@@ -33,26 +33,6 @@ spec:
         ports:
         - containerPort: 8888
 ---
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: ncoursol
-spec:
-  selector:
-    matchLabels:
-      app: ncoursol
-  replicas: 3
-  template:
-    metadata:
-      labels:
-        app: ncoursol
-    spec:
-      containers:
-      - name: ncoursol
-        image: wil42/playground:v2
-        ports:
-        - containerPort: 8888
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
