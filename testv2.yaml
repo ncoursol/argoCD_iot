@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: wil42
+  name: wil423
   labels:
-    app: wil42
+    app: wil423
 spec:
   type: NodePort 
   ports:
@@ -11,24 +11,24 @@ spec:
     port: 80
     targetPort: 8888
   selector:
-    app: wil42
+    app: wil423
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wil42
+  name: wil423
 spec:
   selector:
     matchLabels:
-      app: wil42
+      app: wil423
   replicas: 1
   template:
     metadata:
       labels:
-        app: wil42
+        app: wil423
     spec:
       containers:
-      - name: wil42
+      - name: wil423
         image: wil42/playground:v1
         ports:
         - containerPort: 8888
@@ -47,6 +47,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: wil42
+                name: wil423
                 port:
                   name: http
