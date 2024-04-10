@@ -8,8 +8,8 @@ spec:
   type: NodePort 
   ports:
   - name: http
-    port: 80
-    targetPort: 8888
+    port: 8888
+    protocol: TCP
   selector:
     app: wil42
 ---
@@ -29,24 +29,6 @@ spec:
     spec:
       containers:
       - name: wil42
-        image: wil42/playground:v2
+        image: wil42/playground:v1
         ports:
         - containerPort: 8888
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: nginx
-  annotations:
-    ingress.kubernetes.io/ssl-redirect: "false"
-spec:
-  rules:
-    - http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: wil42
-                port:
-                  name: http
